@@ -62,12 +62,9 @@
             pot2.push(group[2], group[3]);
         });
 
-        // ၃-၄ အသင်းများကို Shuffle လုပ်ပေးခြင်းဖြင့် ပိုမိုမျှတစေရန်
-        pot2.sort(() => Math.random() - 0.5);
-
         const container = document.getElementById('tournament-content');
         
-        // pot1 အသင်းတွေနဲ့ pot2 အသင်းတွေကို တွဲပေးလိုက်သည် (၁-၂ vs ၃-၄ မဖြစ်စေရ)
+        // pot1 အသင်းတွေနဲ့ pot2 အသင်းတွေကို တွဲပေးလိုက်သည် (Shuffle မလုပ်တော့ပါ)
         pot1.forEach((team1, index) => {
             const team2 = pot2[index];
             const matchCard = document.createElement('div');
