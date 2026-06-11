@@ -12,27 +12,29 @@
         .team-link { font-size: 0.9rem; font-weight: 600; color: #f1f5f9; text-decoration: none; transition: 0.3s; }
         .team-link:hover { color: #d4ff00; }
         .no-link { font-size: 0.9rem; font-weight: 600; color: #f1f5f9; }
-        
-        #trophy-btn {
-            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
-            background: linear-gradient(135deg, #d4ff00, #a3c400); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; box-shadow: 0 4px 15px rgba(212, 255, 0, 0.4);
-            z-index: 9999; font-size: 24px;
-        }
+        #trophy-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #d4ff00, #a3c400); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(212, 255, 0, 0.4); z-index: 9999; font-size: 24px; }
     </style>
 </head>
 <body class="p-4 md:p-6">
-
     <div class="max-w-md mx-auto">
-        <h1 class="text-lg font-bold text-white tracking-widest uppercase mb-8 text-center">ROUND OF 32</h1>
+        <h1 class="text-lg font-bold text-white tracking-widest uppercase mb-8 text-center">ROUND OF 32 (Group-Based)</h1>
         <div id="tournament-content" class="space-y-3"></div>
     </div>
-
     <a href="https://shelbyzio.github.io/MasterLeague_Fixtures/" id="trophy-btn">🏆</a>
 
     <script>
-        const TELEGRAM_LINKS = {
+        const GROUPS = {
+            A: ["Austria", "Australia", "Brazil", "Cape Verde"],
+            B: ["Colombia", "Croatia", "DR Congo", "England"],
+            C: ["Germany", "France", "Japan", "Jordan"],
+            D: ["New Zealand", "Mexico", "Portugal", "Norway"],
+            E: ["Scotland", "Qatar", "Spain", "South Africa"],
+            F: ["United States", "Tunisia", "Uruguay", "Algeria"],
+            G: ["South Korea", "Panama", "Turkey", "Senegal"],
+            H: ["Netherlands", "Iran", "Ecuador", "Czechia"]
+        };
+
+        const CONTACTS = {
             "Austria": "https://t.me/lord_voldemort101", "Australia": "https://t.me/KhantX_7272",
             "Brazil": "https://t.me/ggman53343", "Cape Verde": "https://t.me/trt109829",
             "Colombia": "https://t.me/iz_szlai", "Croatia": "https://t.me/Saad_waiyan",
@@ -51,26 +53,35 @@
             "Ecuador": "https://t.me/ZinMinKhant2007", "Czechia": "https://t.me/Mgzay8"
         };
 
-        // အသင်းစာရင်းကို Array အနေနဲ့ ထုတ်ယူခြင်း
-        let teamNames = Object.keys(TELEGRAM_LINKS);
+        // Group တွေကို အပိုင်း ၂ ပိုင်းခွဲလိုက်သည် (၁-၂ နှင့် ၃-၄)
+        let pot1 = []; // Group တစ်ခုစီရဲ့ (၁, ၂) အသင်းများ
+        let pot2 = []; // Group တစ်ခုစီရဲ့ (၃, ၄) အသင်းများ
 
-        // Fisher-Yates Shuffle algorithm သုံးပြီး အသင်းစာရင်းကို Random ဖြစ်အောင် ရှပ်ထုတ်ခြင်း
-        for (let i = teamNames.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [teamNames[i], teamNames[j]] = [teamNames[j], teamNames[i]];
-        }
+        Object.values(GROUPS).forEach(group => {
+            pot1.push(group[0], group[1]);
+            pot2.push(group[2], group[3]);
+        });
+
+        // ၃-၄ အသင်းများကို Shuffle လုပ်ပေးခြင်းဖြင့် ပိုမိုမျှတစေရန်
+        pot2.sort(() => Math.random() - 0.5);
 
         const container = document.getElementById('tournament-content');
         
-        // ပွဲစဉ်များ တည်ဆောက်ခြင်း
-        for (let i = 0; i < teamNames.length; i += 2) {
-            const name1 = teamNames[i], name2 = teamNames[i + 1];
+        // pot1 အသင်းတွေနဲ့ pot2 အသင်းတွေကို တွဲပေးလိုက်သည် (၁-၂ vs ၃-၄ မဖြစ်စေရ)
+        pot1.forEach((team1, index) => {
+            const team2 = pot2[index];
             const matchCard = document.createElement('div');
             matchCard.className = 'match-card';
-            const createLink = (name) => TELEGRAM_LINKS[name] ? `<a href="${TELEGRAM_LINKS[name]}" target="_blank" class="team-link">${name}</a>` : `<span class="no-link">${name}</span>`;
-            matchCard.innerHTML = `<div class="flex-1 text-left truncate pr-2">${createLink(name1)}</div><div class="vs-badge">VS</div><div class="flex-1 text-right truncate pl-2">${createLink(name2)}</div>`;
+            
+            const createLink = (name) => CONTACTS[name] ? `<a href="${CONTACTS[name]}" target="_blank" class="team-link">${name}</a>` : `<span class="no-link">${name}</span>`;
+            
+            matchCard.innerHTML = `
+                <div class="flex-1 text-left truncate pr-2">${createLink(team1)}</div>
+                <div class="vs-badge">VS</div>
+                <div class="flex-1 text-right truncate pl-2">${createLink(team2)}</div>
+            `;
             container.appendChild(matchCard);
-        }
+        });
     </script>
 </body>
 </html>
