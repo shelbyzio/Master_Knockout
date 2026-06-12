@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eFootball Round of 16</title>
+    <title>eFootball Round of 32 Results</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #0c0e14; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .match-card { background: #1a1c24; border-radius: 12px; padding: 16px 20px; border: 1px solid #2a2f3a; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-        .vs-badge { font-size: 0.7rem; font-weight: 900; color: #0c0e14; background-color: #d4ff00; padding: 4px 10px; border-radius: 6px; box-shadow: 0 0 10px rgba(212, 255, 0, 0.4); letter-spacing: 0.05em; }
+        .result-badge { font-size: 0.8rem; font-weight: 800; color: #d4ff00; }
         .team-link { font-size: 0.9rem; font-weight: 600; color: #f1f5f9; text-decoration: none; transition: 0.3s; }
         .team-link:hover { color: #d4ff00; }
         .no-link { font-size: 0.9rem; font-weight: 600; color: #f1f5f9; }
@@ -17,48 +17,62 @@
 </head>
 <body class="p-4 md:p-6">
     <div class="max-w-md mx-auto">
-        <h1 class="text-lg font-bold text-white tracking-widest uppercase mb-8 text-center">ROUND OF 16</h1>
+        <h1 class="text-lg font-bold text-white tracking-widest uppercase mb-8 text-center">ROUND OF 32 RESULTS</h1>
         <div id="tournament-content" class="space-y-3"></div>
     </div>
-    <a href="https://shelbyzio.github.io/Master_Knockout/" id="trophy-btn">🏆</a>
+    <a href="https://shelbyzio.github.io/MasterLeague_Fixtures/" id="trophy-btn">🏆</a>
 
     <script>
         const CONTACTS = {
             "Austria": "https://t.me/lord_voldemort101", "Australia": "https://t.me/KhantX_7272",
+            "Brazil": "https://t.me/ggman53343", "Cape Verde": "https://t.me/trt109829",
             "Colombia": "https://t.me/iz_szlai", "Croatia": "https://t.me/Saad_waiyan",
-            "Japan": "https://t.me/LHA_goodluck", "France": "https://t.me/Hemaljr10",
+            "DR Congo": "https://t.me/LuNyo0", "England": "https://t.me/goddeden",
+            "Germany": "https://t.me/MESSi_10FC", "France": "https://t.me/Hemaljr10",
+            "Japan": "https://t.me/LHA_goodluck", "Jordan": "https://t.me/NaingHtun1",
             "New Zealand": "https://t.me/ikc8088", "Mexico": "https://t.me/Ordinary_1211",
-            "Scotland": "https://t.me/kokyaw876", "South Africa": "https://t.me/zingyia",
-            "United States": "https://t.me/ChanAung1178", "Algeria": "https://t.me/kaunghtetko354",
-            "Panama": "", "Czechia": "https://t.me/Mgzay8",
-            "Pending Winner 1": "", "Pending Winner 2": ""
+            "Portugal": "https://t.me/Pyaephyowin250832229", "Norway": "https://t.me/z09khun",
+            "Scotland": "https://t.me/kokyaw876", "Qatar": "https://t.me/iluv_Nadi",
+            "Spain": "https://t.me/KyawGyi798260", "South Africa": "https://t.me/zingyia",
+            "United States": "https://t.me/ChanAung1178", "Tunisia": "https://t.me/Myo3135",
+            "Uruguay": "https://t.me/Rashford01112009", "Algeria": "https://t.me/kaunghtetko354",
+            "South Korea": "https://t.me/Kaylarr1", "Panama": "",
+            "Turkey": "https://t.me/Phyu1724", "Senegal": "https://t.me/yinaung11",
+            "Netherlands": "https://t.me/AHira99", "Iran": "https://t.me/Thuya12345678901",
+            "Ecuador": "https://t.me/ZinMinKhant2007", "Czechia": "https://t.me/Mgzay8"
         };
 
-        // Round of 16 Matches (8 matches total)
-        const matches = [
-            
-            ["Austria", "Australia"],
-            ["Colombia", "Croatia"],
-            ["Japan", "France"],
-            ["New Zealand", "Mexico"],
-            ["Scotland", "South Africa"],
-            ["United States", "Algeria"],
-            ["Panama", "Czechia"],
-            ["TBA", "TBA"]
+        const results = [
+            {t1: "Austria", s1: 13, t2: "Brazil", s2: 3},
+            {t1: "Australia", s1: 5, t2: "Cape Verde", s2: 4},
+            {t1: "Colombia", s1: 9, t2: "DR Congo", s2: 5},
+            {t1: "Croatia", s1: 13, t2: "England", s2: 8},
+            {t1: "Germany", s1: 6, t2: "Japan", s2: 9},
+            {t1: "France", s1: 7, t2: "Jordan", s2: 2},
+            {t1: "New Zealand", s1: 5, t2: "Portugal", s2: 1},
+            {t1: "Mexico", s1: 10, t2: "Norway", s2: 5},
+            {t1: "Scotland", s1: 6, t2: "Spain", s2: 1},
+            {t1: "Qatar", s1: 2, t2: "South Africa", s2: 4},
+            {t1: "United States", s1: 10, t2: "Uruguay", s2: 3},
+            {t1: "Tunisia", s1: 6, t2: "Algeria", s2: 7},
+            {t1: "South Korea", s1: "-", t2: "Turkey", s2: "-"},
+            {t1: "Panama", s1: 10, t2: "Senegal", s2: 5},
+            {t1: "Netherlands", s1: "-", t2: "Ecuador", s2: "-"},
+            {t1: "Iran", s1: 1, t2: "Czechia", s2: 4}
         ];
 
         const container = document.getElementById('tournament-content');
         
-        matches.forEach((match) => {
+        results.forEach((m) => {
             const matchCard = document.createElement('div');
             matchCard.className = 'match-card';
             
             const createLink = (name) => CONTACTS[name] ? `<a href="${CONTACTS[name]}" target="_blank" class="team-link">${name}</a>` : `<span class="no-link">${name}</span>`;
             
             matchCard.innerHTML = `
-                <div class="flex-1 text-left truncate pr-2">${createLink(match[0])}</div>
-                <div class="vs-badge">VS</div>
-                <div class="flex-1 text-right truncate pl-2">${createLink(match[1])}</div>
+                <div class="flex-1 text-left truncate pr-2">${createLink(m.t1)}</div>
+                <div class="result-badge px-2">${m.s1} - ${m.s2}</div>
+                <div class="flex-1 text-right truncate pl-2">${createLink(m.t2)}</div>
             `;
             container.appendChild(matchCard);
         });
