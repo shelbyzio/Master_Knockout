@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eFootball Round of 32 Results</title>
+    <title>Master League S - 5</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #0c0e14; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
@@ -11,71 +11,92 @@
         .result-badge { font-size: 0.8rem; font-weight: 800; color: #d4ff00; }
         .team-link { font-size: 0.9rem; font-weight: 600; color: #f1f5f9; text-decoration: none; transition: 0.3s; }
         .team-link:hover { color: #d4ff00; }
-        .no-link { font-size: 0.9rem; font-weight: 600; color: #f1f5f9; }
+        .no-link { font-size: 0.9rem; font-weight: 600; color: #94a3b8; }
+        .nav-btn { font-size: 0.75rem; font-weight: 700; padding: 8px 12px; border-radius: 6px; background: #2a2f3a; color: #ffffff; transition: 0.3s; cursor: pointer; border: none; }
+        .nav-btn.active { background: #d4ff00; color: #0c0e14; }
         #trophy-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #d4ff00, #a3c400); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(212, 255, 0, 0.4); z-index: 9999; font-size: 24px; }
     </style>
 </head>
 <body class="p-4 md:p-6">
     <div class="max-w-md mx-auto">
-        <h1 class="text-lg font-bold text-white tracking-widest uppercase mb-8 text-center">ROUND OF 32 RESULTS</h1>
+        <h1 class="text-xl font-bold text-white tracking-widest uppercase mb-6 text-center">Master League S - 5</h1>
+        
+        <div id="nav-container" class="flex flex-wrap gap-2 mb-8 justify-center">
+            <button class="nav-btn active" onclick="showStage('R32', event)">Round of 32</button>
+            <button class="nav-btn" onclick="showStage('R16', event)">Round of 16</button>
+            <button class="nav-btn" onclick="showStage('QF', event)">Quarter Final</button>
+            <button class="nav-btn" onclick="showStage('SF', event)">Semi</button>
+            <button class="nav-btn" onclick="showStage('Final', event)">Final</button>
+        </div>
+
         <div id="tournament-content" class="space-y-3"></div>
     </div>
     <a href="https://shelbyzio.github.io/MasterLeague_Fixtures/" id="trophy-btn">🏆</a>
 
     <script>
         const CONTACTS = {
-            "Austria": "https://t.me/lord_voldemort101", "Australia": "https://t.me/KhantX_7272",
-            "Brazil": "https://t.me/ggman53343", "Cape Verde": "https://t.me/trt109829",
-            "Colombia": "https://t.me/iz_szlai", "Croatia": "https://t.me/Saad_waiyan",
-            "DR Congo": "https://t.me/LuNyo0", "England": "https://t.me/goddeden",
-            "Germany": "https://t.me/MESSi_10FC", "France": "https://t.me/Hemaljr10",
-            "Japan": "https://t.me/LHA_goodluck", "Jordan": "https://t.me/NaingHtun1",
-            "New Zealand": "https://t.me/ikc8088", "Mexico": "https://t.me/Ordinary_1211",
-            "Portugal": "https://t.me/Pyaephyowin250832229", "Norway": "https://t.me/z09khun",
-            "Scotland": "https://t.me/kokyaw876", "Qatar": "https://t.me/iluv_Nadi",
-            "Spain": "https://t.me/KyawGyi798260", "South Africa": "https://t.me/zingyia",
-            "United States": "https://t.me/ChanAung1178", "Tunisia": "https://t.me/Myo3135",
-            "Uruguay": "https://t.me/Rashford01112009", "Algeria": "https://t.me/kaunghtetko354",
-            "South Korea": "https://t.me/Kaylarr1", "Panama": "",
-            "Turkey": "https://t.me/Phyu1724", "Senegal": "https://t.me/yinaung11",
-            "Netherlands": "https://t.me/AHira99", "Iran": "https://t.me/Thuya12345678901",
-            "Ecuador": "https://t.me/ZinMinKhant2007", "Czechia": "https://t.me/Mgzay8"
+            "Côte d'Ivoire": "https://t.me/Khant0079", "Egypt": "https://t.me/Bel_kyaw",
+            "Senegal": "", "Brazil": "https://t.me/ChanAung1178",
+            "South Africa": "https://t.me/aungnayzan", "Japan": "https://t.me/Nyan428925",
+            "Colombia": "https://t.me/AHtikeZ", "Saudi Arabia": "https://t.me/lakham212",
+            "England": "https://t.me/HmMmOnFiRe", "Canada": "https://t.me/AungZinPhyo1992",
+            "United States": "https://t.me/ShadowFang191", "Iraq": "https://t.me/kharkhar1225",
+            "Mexico": "https://t.me/lokidemon99", "Belgium": "https://t.me/Heinminmdy",
+            "France": "https://t.me/nicorizer", "Ghana": "https://t.me/khantkyawthu_01",
+            "Uruguay": "https://t.me/HeinHtet_Nai", "Morocco": "https://t.me/Myan_Khun",
+            "Tunisia": "https://t.me/Ranger13102003", "Australia": "https://t.me/Aungpyinnyar",
+            "Bosnia and Herzegovina": "https://t.me/SonyaMuller9", "Croatia": "https://t.me/nzp567",
+            "Paraguay": "https://t.me/HmMmOnFiRe", "South Korea": "https://t.me/Hemaljr10",
+            "Portugal": "https://t.me/Wallker29", "Austria": "https://t.me/oakjar",
+            "Curaçao": "https://t.me/iz_szlai", "Switzerland": "https://t.me/ThuriMin2355",
+            "Ecuador": "https://t.me/Nyanzayar", "Türkiye": "https://t.me/Ferdico99",
+            "New Zealand": "https://t.me/mikeyjn", "Cape Verde": "https://t.me/Heropool"
         };
 
-        const results = [
-            {t1: "Austria", s1: 13, t2: "Brazil", s2: 3},
-            {t1: "Australia", s1: 5, t2: "Cape Verde", s2: 4},
-            {t1: "Colombia", s1: 9, t2: "DR Congo", s2: 5},
-            {t1: "Croatia", s1: 13, t2: "England", s2: 8},
-            {t1: "Germany", s1: 6, t2: "Japan", s2: 9},
-            {t1: "France", s1: 7, t2: "Jordan", s2: 2},
-            {t1: "New Zealand", s1: 5, t2: "Portugal", s2: 1},
-            {t1: "Mexico", s1: 10, t2: "Norway", s2: 5},
-            {t1: "Scotland", s1: 6, t2: "Spain", s2: 1},
-            {t1: "Qatar", s1: 2, t2: "South Africa", s2: 4},
-            {t1: "United States", s1: 10, t2: "Uruguay", s2: 3},
-            {t1: "Tunisia", s1: 6, t2: "Algeria", s2: 7},
-            {t1: "South Korea", s1: "-", t2: "Turkey", s2: "-"},
-            {t1: "Panama", s1: 10, t2: "Senegal", s2: 5},
-            {t1: "Netherlands", s1: "-", t2: "Ecuador", s2: "-"},
-            {t1: "Iran", s1: 1, t2: "Czechia", s2: 4}
-        ];
+        const tournamentData = {
+            "R32": [
+                {t1: "Côte d'Ivoire", t2: "Egypt"}, {t1: "Senegal", t2: "Brazil"},
+                {t1: "South Africa", t2: "Japan"}, {t1: "Colombia", t2: "Saudi Arabia"},
+                {t1: "England", t2: "Canada"}, {t1: "United States", t2: "Iraq"},
+                {t1: "Mexico", t2: "Belgium"}, {t1: "France", t2: "Ghana"},
+                {t1: "Uruguay", t2: "Morocco"}, {t1: "Tunisia", t2: "Australia"},
+                {t1: "Bosnia and Herzegovina", t2: "Croatia"}, {t1: "Paraguay", t2: "South Korea"},
+                {t1: "Portugal", t2: "Austria"}, {t1: "Curaçao", t2: "Switzerland"},
+                {t1: "Ecuador", t2: "Türkiye"}, {t1: "New Zealand", t2: "Cape Verde"}
+            ],
+            "R16": [], "QF": [], "SF": [], "Final": []
+        };
 
-        const container = document.getElementById('tournament-content');
+        function showStage(stage, event) {
+            const container = document.getElementById('tournament-content');
+            container.innerHTML = '';
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+
+            const matches = tournamentData[stage];
+            if(!matches || matches.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-500 pt-10">ပွဲစဉ်များ မစတင်သေးပါ</p>';
+                return;
+            }
+
+            matches.forEach((m) => {
+                const matchCard = document.createElement('div');
+                matchCard.className = 'match-card';
+                const createLink = (name) => CONTACTS[name] ? `<a href="${CONTACTS[name]}" target="_blank" class="team-link">${name}</a>` : `<span class="no-link">${name}</span>`;
+                matchCard.innerHTML = `
+                    <div class="flex-1 text-left truncate pr-2">${createLink(m.t1)}</div>
+                    <div class="result-badge px-2">VS</div>
+                    <div class="flex-1 text-right truncate pl-2">${createLink(m.t2)}</div>
+                `;
+                container.appendChild(matchCard);
+            });
+        }
         
-        results.forEach((m) => {
-            const matchCard = document.createElement('div');
-            matchCard.className = 'match-card';
-            
-            const createLink = (name) => CONTACTS[name] ? `<a href="${CONTACTS[name]}" target="_blank" class="team-link">${name}</a>` : `<span class="no-link">${name}</span>`;
-            
-            matchCard.innerHTML = `
-                <div class="flex-1 text-left truncate pr-2">${createLink(m.t1)}</div>
-                <div class="result-badge px-2">${m.s1} - ${m.s2}</div>
-                <div class="flex-1 text-right truncate pl-2">${createLink(m.t2)}</div>
-            `;
-            container.appendChild(matchCard);
-        });
+        // Initial call
+        showStage('R32', { currentTarget: document.querySelector('.nav-btn') });
     </script>
 </body>
 </html>
