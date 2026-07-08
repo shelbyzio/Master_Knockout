@@ -9,9 +9,9 @@
         body { background-color: #0c0e14; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .match-card { background: #1a1c24; border-radius: 12px; padding: 16px 20px; border: 1px solid #2a2f3a; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
         .result-badge { font-size: 0.8rem; font-weight: 800; color: #d4ff00; }
-        .team-link { font-size: 0.9rem; font-weight: 600; color: #f1f5f9; text-decoration: none; transition: 0.3s; }
+        .team-link { font-size: 0.9rem; font-weight: 600; color: #f1f5f9; text-decoration: none; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
         .team-link:hover { color: #d4ff00; }
-        .no-link { font-size: 0.9rem; font-weight: 600; color: #94a3b8; }
+        .no-link { font-size: 0.9rem; font-weight: 600; color: #94a3b8; display: flex; align-items: center; gap: 8px; }
         .nav-btn { font-size: 0.75rem; font-weight: 700; padding: 8px 12px; border-radius: 6px; background: #2a2f3a; color: #ffffff; transition: 0.3s; cursor: pointer; border: none; }
         .nav-btn.active { background: #d4ff00; color: #0c0e14; }
         #trophy-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #d4ff00, #a3c400); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(212, 255, 0, 0.4); z-index: 9999; font-size: 24px; }
@@ -34,6 +34,17 @@
     <a href="https://shelbyzio.github.io/MasterLeague_Fixtures/" id="trophy-btn">🏆</a>
 
     <script>
+        const TEAMS = {
+            "Côte d'Ivoire": "🇨🇮", "Egypt": "🇪🇬", "Senegal": "🇸🇳", "Brazil": "🇧🇷",
+            "South Africa": "🇿🇦", "Japan": "🇯🇵", "Colombia": "🇨🇴", "Saudi Arabia": "🇸🇦",
+            "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Canada": "🇨🇦", "United States": "🇺🇸", "Iraq": "🇮🇶",
+            "Mexico": "🇲🇽", "Belgium": "🇧🇪", "France": "🇫🇷", "Ghana": "🇬🇭",
+            "Uruguay": "🇺🇾", "Morocco": "🇲🇦", "Tunisia": "🇹🇳", "Australia": "🇦🇺",
+            "Bosnia and Herzegovina": "🇧🇦", "Croatia": "🇭🇷", "Paraguay": "🇵🇾", "South Korea": "🇰🇷",
+            "Portugal": "🇵🇹", "Austria": "🇦🇹", "Curaçao": "🇨🇼", "Switzerland": "🇨🇭",
+            "Ecuador": "🇪🇨", "Türkiye": "🇹🇷", "New Zealand": "🇳🇿", "Cape Verde": "🇨🇻"
+        };
+
         const CONTACTS = {
             "Côte d'Ivoire": "https://t.me/Khant0079", "Egypt": "https://t.me/Bel_kyaw",
             "Senegal": "", "Brazil": "https://t.me/ChanAung1178",
@@ -85,17 +96,28 @@
             matches.forEach((m) => {
                 const matchCard = document.createElement('div');
                 matchCard.className = 'match-card';
-                const createLink = (name) => CONTACTS[name] ? `<a href="${CONTACTS[name]}" target="_blank" class="team-link">${name}</a>` : `<span class="no-link">${name}</span>`;
+                
+                // အိမ်ရှင်အသင်း - အလံ ရှေ့မှာ
+                const createHomeTeamUI = (name) => {
+                    const flag = TEAMS[name] || "";
+                    return CONTACTS[name] ? `<a href="${CONTACTS[name]}" target="_blank" class="team-link"><span>${flag}</span> ${name}</a>` : `<span class="no-link"><span>${flag}</span> ${name}</span>`;
+                };
+
+                // အဝေးအသင်း - အလံ နောက်မှာ
+                const createAwayTeamUI = (name) => {
+                    const flag = TEAMS[name] || "";
+                    return CONTACTS[name] ? `<a href="${CONTACTS[name]}" target="_blank" class="team-link">${name} <span>${flag}</span></a>` : `<span class="no-link">${name} <span>${flag}</span></span>`;
+                };
+
                 matchCard.innerHTML = `
-                    <div class="flex-1 text-left truncate pr-2">${createLink(m.t1)}</div>
+                    <div class="flex-1 text-left truncate pr-2">${createHomeTeamUI(m.t1)}</div>
                     <div class="result-badge px-2">VS</div>
-                    <div class="flex-1 text-right truncate pl-2">${createLink(m.t2)}</div>
+                    <div class="flex-1 text-right truncate pl-2 flex justify-end">${createAwayTeamUI(m.t2)}</div>
                 `;
                 container.appendChild(matchCard);
             });
         }
         
-        // Initial call
         showStage('R32', { currentTarget: document.querySelector('.nav-btn') });
     </script>
 </body>
