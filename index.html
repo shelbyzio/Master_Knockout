@@ -35,45 +35,43 @@
 
     <script>
         const TEAMS = {
-            "Côte d'Ivoire": "🇨🇮", "Egypt": "🇪🇬", "Senegal": "🇸🇳", "Brazil": "🇧🇷",
-            "South Africa": "🇿🇦", "Japan": "🇯🇵", "Colombia": "🇨🇴", "Saudi Arabia": "🇸🇦",
-            "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Canada": "🇨🇦", "United States": "🇺🇸", "Iraq": "🇮🇶",
-            "Mexico": "🇲🇽", "Belgium": "🇧🇪", "France": "🇫🇷", "Ghana": "🇬🇭",
-            "Uruguay": "🇺🇾", "Morocco": "🇲🇦", "Tunisia": "🇹🇳", "Australia": "🇦🇺",
-            "Bosnia": "🇧🇦", "Croatia": "🇭🇷", "Paraguay": "🇵🇾", "South Korea": "🇰🇷",
-            "Portugal": "🇵🇹", "Austria": "🇦🇹", "Curaçao": "🇨🇼", "Switzerland": "🇨🇭",
-            "Ecuador": "🇪🇨", "Türkiye": "🇹🇷", "New Zealand": "🇳🇿", "Cape Verde": "🇨🇻"
+            "Belgium": "🇧🇪", "Australia": "🇦🇺", "Brazil": "🇧🇷", "Canada": "🇨🇦", "Croatia": "🇭🇷",
+            "Curacao": "🇨🇼", "Egypt": "🇪🇬", "Ecuador": "🇪🇨", "France": "🇫🇷", "Ghana": "🇬🇭",
+            "Japan": "🇯🇵", "Iraq": "🇮🇶", "Mexico": "🇲🇽", "Morocco": "🇲🇦", "Paraguay": "🇵🇾",
+            "Portugal": "🇵🇹", "Saudi Arabia": "🇸🇦", "Senegal": "🇸🇳", "South Korea": "🇰🇷",
+            "South Africa": "🇿🇦", "United States": "🇺🇸", "Tunisia": "🇹🇳", "Uruguay": "🇺🇾",
+            "Cote d'Ivoire": "🇨🇮", "Iran": "🇮🇷", "Colombia": "🇨🇴", "Dr Congo": "🇨🇩",
+            "New Zealand": "🇳🇿", "Panama": "🇵🇦", "Austria": "🇦🇹", "Bosnia": "🇧🇦", "Haiti": "🇭🇹"
         };
 
         const CONTACTS = {
-            "Côte d'Ivoire": "https://t.me/Khant0079", "Egypt": "https://t.me/Bel_kyaw",
-            "Senegal": "", "Brazil": "https://t.me/ChanAung1178",
-            "South Africa": "https://t.me/aungnayzan", "Japan": "https://t.me/Nyan428925",
-            "Colombia": "https://t.me/AHtikeZ", "Saudi Arabia": "https://t.me/lakham212",
-            "England": "https://t.me/HmMmOnFiRe", "Canada": "https://t.me/AungZinPhyo1992",
-            "United States": "https://t.me/ShadowFang191", "Iraq": "https://t.me/kharkhar1225",
-            "Mexico": "https://t.me/lokidemon99", "Belgium": "https://t.me/Heinminmdy",
+            "Belgium": "https://t.me/Heinminmdy", "Australia": "https://t.me/Aungpyinnyar",
+            "Brazil": "https://t.me/ChanAung1178", "Canada": "https://t.me/AungZinPhyo1992",
+            "Croatia": "https://t.me/nzp567", "Curacao": "https://t.me/iz_szlai",
+            "Egypt": "https://t.me/Bel_kyaw", "Ecuador": "https://t.me/Nyanzayar",
             "France": "https://t.me/nicorizer", "Ghana": "https://t.me/khantkyawthu_01",
-            "Uruguay": "https://t.me/HeinHtet_Nai", "Morocco": "https://t.me/Myan_Khun",
-            "Tunisia": "https://t.me/Ranger13102003", "Australia": "https://t.me/Aungpyinnyar",
-            "Bosnia": "https://t.me/SonyaMuller9", "Croatia": "https://t.me/nzp567",
-            "Paraguay": "https://t.me/HmMmOnFiRe", "South Korea": "https://t.me/Hemaljr10",
-            "Portugal": "https://t.me/Wallker29", "Austria": "https://t.me/oakjar",
-            "Curaçao": "https://t.me/iz_szlai", "Switzerland": "https://t.me/ThuriMin2355",
-            "Ecuador": "https://t.me/Nyanzayar", "Türkiye": "https://t.me/Ferdico99",
-            "New Zealand": "https://t.me/mikeyjn", "Cape Verde": "https://t.me/Heropool"
+            "Japan": "https://t.me/Nyan428925", "Iraq": "https://t.me/kharkhar1225",
+            "Mexico": "https://t.me/lokidemon99", "Morocco": "https://t.me/Myan_Khun",
+            "Paraguay": "https://t.me/HmMmOnFiRe", "Portugal": "https://t.me/Wallker29",
+            "Saudi Arabia": "https://t.me/lakham212", "Senegal": "", "South Korea": "https://t.me/Hemaljr10",
+            "South Africa": "https://t.me/aungnayzan", "United States": "https://t.me/ShadowFang191",
+            "Tunisia": "https://t.me/Ranger13102003", "Uruguay": "https://t.me/HeinHtet_Nai",
+            "Cote d'Ivoire": "https://t.me/Khant0079", "Iran": "https://t.me/Sanminoo", 
+            "Colombia": "https://t.me/AHtikeZ", "Dr Congo": "https://t.me/kenzjust", 
+            "New Zealand": "https://t.me/mikeyjn", "Panama": "https://t.me/Gameefootball710", 
+            "Austria": "https://t.me/oakjar", "Bosnia": "https://t.me/SonyaMuller9", "Haiti": "https://t.me/Doraemoncat77"
         };
 
         const tournamentData = {
             "R32": [
-                {t1: "Côte d'Ivoire", t2: "Egypt"}, {t1: "Senegal", t2: "Brazil"},
-                {t1: "South Africa", t2: "Japan"}, {t1: "Colombia", t2: "Saudi Arabia"},
-                {t1: "England", t2: "Canada"}, {t1: "United States", t2: "Iraq"},
-                {t1: "Mexico", t2: "Belgium"}, {t1: "France", t2: "Ghana"},
-                {t1: "Uruguay", t2: "Morocco"}, {t1: "Tunisia", t2: "Australia"},
-                {t1: "Bosnia and Herzegovina", t2: "Croatia"}, {t1: "Paraguay", t2: "South Korea"},
-                {t1: "Portugal", t2: "Austria"}, {t1: "Curaçao", t2: "Switzerland"},
-                {t1: "Ecuador", t2: "Türkiye"}, {t1: "New Zealand", t2: "Cape Verde"}
+                {t1: "Belgium", t2: "Australia"}, {t1: "Brazil", t2: "Canada"},
+                {t1: "Croatia", t2: "Curacao"}, {t1: "Egypt", t2: "Ecuador"},
+                {t1: "France", t2: "Ghana"}, {t1: "Japan", t2: "Iraq"},
+                {t1: "Mexico", t2: "Morocco"}, {t1: "Paraguay", t2: "Portugal"},
+                {t1: "Saudi Arabia", t2: "Senegal"}, {t1: "South Korea", t2: "South Africa"},
+                {t1: "United States", t2: "Tunisia"}, {t1: "Uruguay", t2: "Cote d'Ivoire"},
+                {t1: "Iran", t2: "Colombia"}, {t1: "Dr Congo", t2: "New Zealand"},
+                {t1: "Panama", t2: "Austria"}, {t1: "Bosnia", t2: "Haiti"}
             ],
             "R16": [], "QF": [], "SF": [], "Final": []
         };
@@ -97,13 +95,11 @@
                 const matchCard = document.createElement('div');
                 matchCard.className = 'match-card';
                 
-                // အိမ်ရှင်အသင်း - အလံ ရှေ့မှာ
                 const createHomeTeamUI = (name) => {
                     const flag = TEAMS[name] || "";
                     return CONTACTS[name] ? `<a href="${CONTACTS[name]}" target="_blank" class="team-link"><span>${flag}</span> ${name}</a>` : `<span class="no-link"><span>${flag}</span> ${name}</span>`;
                 };
 
-                // အဝေးအသင်း - အလံ နောက်မှာ
                 const createAwayTeamUI = (name) => {
                     const flag = TEAMS[name] || "";
                     return CONTACTS[name] ? `<a href="${CONTACTS[name]}" target="_blank" class="team-link">${name} <span>${flag}</span></a>` : `<span class="no-link">${name} <span>${flag}</span></span>`;
