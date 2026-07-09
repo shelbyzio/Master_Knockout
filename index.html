@@ -8,13 +8,12 @@
     <style>
         body { background-color: #0c0e14; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .match-card { background: #1a1c24; border-radius: 12px; padding: 16px 20px; border: 1px solid #2a2f3a; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-        .result-badge { font-size: 0.8rem; font-weight: 800; color: #d4ff00; }
+        .result-badge { font-size: 0.85rem; font-weight: 800; color: #d4ff00; min-width: 50px; text-align: center; }
         .team-link { font-size: 0.9rem; font-weight: 600; color: #f1f5f9; text-decoration: none; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
         .team-link:hover { color: #d4ff00; }
         .no-link { font-size: 0.9rem; font-weight: 600; color: #94a3b8; display: flex; align-items: center; gap: 8px; }
         .nav-btn { font-size: 0.75rem; font-weight: 700; padding: 8px 12px; border-radius: 6px; background: #2a2f3a; color: #ffffff; transition: 0.3s; cursor: pointer; border: none; }
         .nav-btn.active { background: #d4ff00; color: #0c0e14; }
-        #trophy-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #d4ff00, #a3c400); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(212, 255, 0, 0.4); z-index: 9999; font-size: 24px; }
     </style>
 </head>
 <body class="p-4 md:p-6">
@@ -31,8 +30,7 @@
 
         <div id="tournament-content" class="space-y-3"></div>
     </div>
-   
-
+    
     <script>
         const TEAMS = {
             "Belgium": "🇧🇪", "Australia": "🇦🇺", "Brazil": "🇧🇷", "Canada": "🇨🇦", "Croatia": "🇭🇷",
@@ -62,19 +60,28 @@
             "Austria": "https://t.me/oakjar", "Bosnia": "https://t.me/SonyaMuller9", "Haiti": "https://t.me/Doraemoncat77"
         };
 
-        // ပွဲစဉ်များကို Random ဖြစ်အောင် ပြင်ဆင်ထားသည်
         const tournamentData = {
             "R32": [
-                {t1: "Japan", t2: "Haiti"}, {t1: "Brazil", t2: "Bosnia"},
-                {t1: "Austria", t2: "France"}, {t1: "Egypt", t2: "Panama"},
-                {t1: "Dr Congo", t2: "Belgium"}, {t1: "Canada", t2: "Iraq"},
-                {t1: "Mexico", t2: "Australia"}, {t1: "Paraguay", t2: "New Zealand"},
-                {t1: "Saudi Arabia", t2: "Croatia"}, {t1: "South Korea", t2: "Colombia"},
-                {t1: "United States", t2: "Curacao"}, {t1: "Uruguay", t2: "Iran"},
-                {t1: "Tunisia", t2: "Portugal"}, {t1: "Cote d'Ivoire", t2: "Ecuador"},
-                {t1: "South Africa", t2: "Morocco"}, {t1: "Ghana", t2: "Senegal"}
+                {t1: "Japan", t2: "Haiti", s1: 4, s2: 1}, {t1: "Brazil", t2: "Bosnia", s1: 6, s2: 3},
+                {t1: "Austria", t2: "France", s1: 1, s2: 2}, {t1: "Egypt", t2: "Panama", s1: 7, s2: 1},
+                {t1: "Dr Congo", t2: "Belgium", s1: 4, s2: 2}, {t1: "Canada", t2: "Iraq", s1: 1, s2: 2},
+                {t1: "Mexico", t2: "Australia", s1: 6, s2: 1}, {t1: "Paraguay", t2: "New Zealand", s1: 2, s2: 3},
+                {t1: "Saudi Arabia", t2: "Croatia", s1: 2, s2: 1}, {t1: "South Korea", t2: "Colombia", s1: 1, s2: 0},
+                {t1: "United States", t2: "Curacao", s1: 1, s2: 8}, {t1: "Uruguay", t2: "Iran", s1: 1, s2: 2},
+                {t1: "Tunisia", t2: "Portugal", s1: 5, s2: 1}, {t1: "Cote d'Ivoire", t2: "Ecuador", s1: 2, s2: 4},
+                {t1: "South Africa", t2: "Morocco", s1: 1, s2: 4}, {t1: "Ghana", t2: "Senegal", s1: 0, s2: 3}
             ],
-            "R16": [], "QF": [], "SF": [], "Final": []
+            "R16": [
+                {t1: "Japan", t2: "Brazil"},
+                {t1: "France", t2: "Egypt"},
+                {t1: "Dr Congo", t2: "Iraq"},
+                {t1: "Mexico", t2: "New Zealand"},
+                {t1: "Saudi Arabia", t2: "South Korea"},
+                {t1: "Curacao", t2: "Iran"},
+                {t1: "Tunisia", t2: "Ecuador"},
+                {t1: "Morocco", t2: "Senegal"}
+            ],
+            "QF": [], "SF": [], "Final": []
         };
 
         function showStage(stage, event) {
@@ -106,15 +113,20 @@
                     return CONTACTS[name] ? `<a href="${CONTACTS[name]}" target="_blank" class="team-link">${name} <span>${flag}</span></a>` : `<span class="no-link">${name} <span>${flag}</span></span>`;
                 };
 
+                const resultDisplay = (m.s1 !== undefined && m.s2 !== undefined) 
+                    ? `<div class="result-badge px-2">${m.s1} - ${m.s2}</div>` 
+                    : `<div class="result-badge px-2">VS</div>`;
+
                 matchCard.innerHTML = `
                     <div class="flex-1 text-left truncate pr-2">${createHomeTeamUI(m.t1)}</div>
-                    <div class="result-badge px-2">VS</div>
+                    ${resultDisplay}
                     <div class="flex-1 text-right truncate pl-2 flex justify-end">${createAwayTeamUI(m.t2)}</div>
                 `;
                 container.appendChild(matchCard);
             });
         }
         
+        // Load initial
         showStage('R32', { currentTarget: document.querySelector('.nav-btn') });
     </script>
 </body>
