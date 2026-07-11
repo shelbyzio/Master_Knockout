@@ -22,8 +22,8 @@
         
         <div id="nav-container" class="flex flex-wrap gap-2 mb-8 justify-center">
             <button class="nav-btn" onclick="showStage('R32', event)">Round of 32</button>
-            <button class="nav-btn active" onclick="showStage('R16', event)">Round of 16</button>
-            <button class="nav-btn" onclick="showStage('QF', event)">Quarter Final</button>
+            <button class="nav-btn" onclick="showStage('R16', event)">Round of 16</button>
+            <button class="nav-btn active" onclick="showStage('QF', event)">Quarter Final</button>
             <button class="nav-btn" onclick="showStage('SF', event)">Semi</button>
             <button class="nav-btn" onclick="showStage('Final', event)">Final</button>
         </div>
@@ -82,10 +82,10 @@
                 {t1: "Morocco", t2: "Senegal", s1: 3, s2: 4}
             ],
             "QF": [
-                {t1: "Japan", t2: "Egypt"},
-                {t1: "Dr Congo", t2: "New Zealand"},
+                {t1: "Japan", t2: "Egypt", s1: 3, s2: 8},
+                {t1: "Dr Congo", t2: "New Zealand", s1: 3, s2: 4},
                 {t1: "Saudi Arabia", t2: "Curacao"},
-                {t1: "Tunisia", t2: "Senegal"}
+                {t1: "Tunisia", t2: "Senegal", s1: 3, s2: 3, note: "(P)"}
             ],
             "SF": [], "Final": []
         };
@@ -135,7 +135,7 @@
         }
         
         window.onload = () => {
-            showStage('R16', { currentTarget: document.querySelectorAll('.nav-btn')[1] });
+            showStage('QF', { currentTarget: document.querySelectorAll('.nav-btn')[2] });
         };
     </script>
 </body>
