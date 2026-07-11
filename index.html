@@ -84,12 +84,15 @@
             "QF": [
                 {t1: "Japan", t2: "Egypt", s1: 3, s2: 8},
                 {t1: "Dr Congo", t2: "New Zealand", s1: 3, s2: 4},
-                {t1: "Saudi Arabia", t2: "Curacao"},
+                {t1: "Saudi Arabia", t2: "Curacao", s1: 4, s2: 5},
                 {t1: "Tunisia", t2: "Senegal", s1: 3, s2: 3, note: "(P)"}
             ],
-            "SF": [], "Final": []
+            "SF": [
+                {t1: "Egypt", t2: "New Zealand"},
+                {t1: "Curacao", t2: "Senegal"}
+            ],
+            "Final": []
         };
-
         function showStage(stage, event) {
             const container = document.getElementById('tournament-content');
             container.innerHTML = '';
