@@ -3,99 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master League S - 5</title>
+    <title>Master League S - 6</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #0c0e14; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .match-card { background: #1a1c24; border-radius: 12px; padding: 16px 20px; border: 1px solid #2a2f3a; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-        .result-badge { font-size: 0.85rem; font-weight: 800; color: #d4ff00; min-width: 60px; text-align: center; }
+        .result-badge { font-size: 0.8rem; font-weight: 800; color: #d4ff00; }
         .team-link { font-size: 0.9rem; font-weight: 600; color: #f1f5f9; text-decoration: none; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
         .team-link:hover { color: #d4ff00; }
         .no-link { font-size: 0.9rem; font-weight: 600; color: #94a3b8; display: flex; align-items: center; gap: 8px; }
         .nav-btn { font-size: 0.75rem; font-weight: 700; padding: 8px 12px; border-radius: 6px; background: #2a2f3a; color: #ffffff; transition: 0.3s; cursor: pointer; border: none; }
         .nav-btn.active { background: #d4ff00; color: #0c0e14; }
-        .section-header { font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 12px; margin-top: 16px; letter-spacing: 0.05em; text-align: center; }
     </style>
 </head>
 <body class="p-4 md:p-6">
     <div class="max-w-md mx-auto">
-        <h1 class="text-xl font-bold text-white tracking-widest uppercase mb-6 text-center">Master League S - 5</h1>
+        <h1 class="text-xl font-bold text-white tracking-widest uppercase mb-6 text-center">Master League S - 6</h1>
         
         <div id="nav-container" class="flex flex-wrap gap-2 mb-8 justify-center">
-            <button class="nav-btn" onclick="showStage('R32', event)">Round of 32</button>
+            <button class="nav-btn active" onclick="showStage('R32', event)">Round of 32</button>
             <button class="nav-btn" onclick="showStage('R16', event)">Round of 16</button>
             <button class="nav-btn" onclick="showStage('QF', event)">Quarter Final</button>
             <button class="nav-btn" onclick="showStage('SF', event)">Semi</button>
-            <button class="nav-btn active" onclick="showStage('Finals', event)">Finals</button>
+            <button class="nav-btn" onclick="showStage('Final', event)">Final</button>
         </div>
 
         <div id="tournament-content" class="space-y-3"></div>
     </div>
-    
+
     <script>
         const TEAMS = {
-            "Belgium": "🇧🇪", "Australia": "🇦🇺", "Brazil": "🇧🇷", "Canada": "🇨🇦", "Croatia": "🇭🇷",
-            "Curacao": "🇨🇼", "Egypt": "🇪🇬", "Ecuador": "🇪🇨", "France": "🇫🇷", "Ghana": "🇬🇭",
-            "Japan": "🇯🇵", "Iraq": "🇮🇶", "Mexico": "🇲🇽", "Morocco": "🇲🇦", "Paraguay": "🇵🇾",
-            "Portugal": "🇵🇹", "Saudi Arabia": "🇸🇦", "Senegal": "🇸🇳", "South Korea": "🇰🇷",
-            "South Africa": "🇿🇦", "United States": "🇺🇸", "Tunisia": "🇹🇳", "Uruguay": "🇺🇾",
-            "Cote d'Ivoire": "🇨🇮", "Iran": "🇮🇷", "Colombia": "🇨🇴", "Dr Congo": "🇨🇩",
-            "New Zealand": "🇳🇿", "Panama": "🇵🇦", "Austria": "🇦🇹", "Bosnia": "🇧🇦", "Haiti": "🇭🇹"
+            "Australia": "🇦🇺", "Belgium": "🇧🇪", "Cape Verde": "🇨🇻", "Canada": "🇨🇦", "Curaçao": "🇨🇼",
+            "Colombia": "🇨🇴", "Ecuador": "🇪🇨", "DR Congo": "🇨🇩", "Haiti": "🇭🇹", "France": "🇫🇷",
+            "Iran": "🇮🇷", "Iraq": "🇮🇶", "New Zealand": "🇳🇿", "Netherlands": "🇳🇱", "Norway": "🇳🇴",
+            "Portugal": "🇵🇹", "Scotland": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "Saudi Arabia": "🇸🇦", "Spain": "🇪🇸",
+            "South Africa": "🇿🇦", "Switzerland": "🇨🇭", "United States": "🇺🇸", "Côte d'Ivoire": "🇨🇮",
+            "Uzbekistan": "🇺🇿", "Paraguay": "🇵🇾", "Bosnia": "🇧🇦", "Mexico": "🇲🇽", "Austria": "🇦🇹",
+            "Senegal": "🇸🇳", "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Ghana": "🇬🇭", "Jordan": "🇯🇴"
         };
 
         const CONTACTS = {
-            "Belgium": "https://t.me/Heinminmdy", "Australia": "https://t.me/Aungpyinnyar",
-            "Brazil": "https://t.me/ChanAung1178", "Canada": "https://t.me/AungZinPhyo1992",
-            "Croatia": "https://t.me/nzp567", "Curacao": "https://t.me/iz_szlai",
-            "Egypt": "https://t.me/Bel_kyaw", "Ecuador": "https://t.me/Nyanzayar",
-            "France": "https://t.me/nicorizer", "Ghana": "https://t.me/khantkyawthu_01",
-            "Japan": "https://t.me/Nyan428925", "Iraq": "https://t.me/kharkhar1225",
-            "Mexico": "https://t.me/lokidemon99", "Morocco": "https://t.me/Myan_Khun",
-            "Paraguay": "https://t.me/HmMmOnFiRe", "Portugal": "https://t.me/Wallker29",
-            "Saudi Arabia": "https://t.me/lakham212", "Senegal": "", "South Korea": "https://t.me/Hemaljr10",
-            "South Africa": "https://t.me/aungnayzan", "United States": "https://t.me/ShadowFang191",
-            "Tunisia": "https://t.me/Ranger13102003", "Uruguay": "https://t.me/HeinHtet_Nai",
-            "Cote d'Ivoire": "https://t.me/Khant0079", "Iran": "https://t.me/Sanminoo", 
-            "Colombia": "https://t.me/AHtikeZ", "Dr Congo": "https://t.me/kenzjust", 
-            "New Zealand": "https://t.me/mikeyjn", "Panama": "https://t.me/Gameefootball710", 
-            "Austria": "https://t.me/oakjar", "Bosnia": "https://t.me/SonyaMuller9", "Haiti": "https://t.me/Doraemoncat77"
+            "Australia": "https://t.me/KoKyaw_KYT", "Belgium": "https://t.me/Garniya",
+            "Cape Verde": "https://t.me/yminchit69", "Canada": "https://t.me/zam57493",
+            "Curaçao": "https://t.me/Badrul11", "Colombia": "",
+            "Ecuador": "https://t.me/Wallker29", "DR Congo": "https://t.me/zeusace0",
+            "Haiti": "https://t.me/Dijeaan", "France": "https://t.me/MRTONE3",
+            "Iran": "https://t.me/heinkyawthuang", "Iraq": "https://t.me/Theinau",
+            "New Zealand": "https://t.me/jthu23", "Netherlands": "https://t.me/Khualpu199",
+            "Norway": "https://t.me/Orodevice", "Portugal": "https://t.me/MUCHExt",
+            "Scotland": "https://t.me/ceeyg", "Saudi Arabia": "https://t.me/MCngakaung",
+            "Spain": "https://t.me/Hein040", "South Africa": "https://t.me/paingqt",
+            "Switzerland": "https://t.me/oki6k", "United States": "https://t.me/kyawlwintun17",
+            "Côte d'Ivoire": "https://t.me/mrleon006", "Uzbekistan": "https://t.me/lord_voldemort101",
+            "Paraguay": "https://t.me/ventus2940", "Bosnia": "https://t.me/MinThwe18",
+            "Mexico": "https://t.me/Nyishein77", "Austria": "https://t.me/Khine_Lin_Htay",
+            "Senegal": "https://t.me/Ricechat13579", "England": "",
+            "Ghana": "https://t.me/Kyawthaik468", "Jordan": "https://t.me/BlackEaglessuper"
         };
 
+        // အဖွဲ့ဝင်များ အချင်းချင်း မတွေ့စေရန် စီထားခြင်း
         const tournamentData = {
             "R32": [
-                {t1: "Japan", t2: "Haiti", s1: 4, s2: 1}, {t1: "Brazil", t2: "Bosnia", s1: 6, s2: 3},
-                {t1: "Austria", t2: "France", s1: 1, s2: 2}, {t1: "Egypt", t2: "Panama", s1: 7, s2: 1},
-                {t1: "Dr Congo", t2: "Belgium", s1: 4, s2: 2}, {t1: "Canada", t2: "Iraq", s1: 1, s2: 2},
-                {t1: "Mexico", t2: "Australia", s1: 6, s2: 1}, {t1: "Paraguay", t2: "New Zealand", s1: 2, s2: 3},
-                {t1: "Saudi Arabia", t2: "Croatia", s1: 2, s2: 1}, {t1: "South Korea", t2: "Colombia", s1: 1, s2: 0},
-                {t1: "United States", t2: "Curacao", s1: 1, s2: 8}, {t1: "Uruguay", t2: "Iran", s1: 1, s2: 2},
-                {t1: "Tunisia", t2: "Portugal", s1: 5, s2: 1}, {t1: "Cote d'Ivoire", t2: "Ecuador", s1: 2, s2: 4},
-                {t1: "South Africa", t2: "Morocco", s1: 1, s2: 4}, {t1: "Ghana", t2: "Senegal", s1: 0, s2: 3}
+                {t1: "Australia", t2: "Cape Verde"}, {t1: "Belgium", t2: "Canada"},
+                {t1: "Curaçao", t2: "Ecuador"}, {t1: "Colombia", t2: "DR Congo"},
+                {t1: "Haiti", t2: "Iran"}, {t1: "France", t2: "Iraq"},
+                {t1: "New Zealand", t2: "Norway"}, {t1: "Netherlands", t2: "Portugal"},
+                {t1: "Scotland", t2: "Spain"}, {t1: "Saudi Arabia", t2: "South Africa"},
+                {t1: "Switzerland", t2: "Côte d'Ivoire"}, {t1: "United States", t2: "Uzbekistan"},
+                {t1: "Paraguay", t2: "Bosnia"}, {t1: "Mexico", t2: "Austria"},
+                {t1: "Senegal", t2: "England"}, {t1: "Ghana", t2: "Jordan"}
             ],
-            "R16": [
-                {t1: "Japan", t2: "Brazil", s1: 4, s2: 4, note: "(P)"},
-                {t1: "France", t2: "Egypt", s1: 4, s2: 6},
-                {t1: "Dr Congo", t2: "Iraq", s1: 4, s2: 3},
-                {t1: "Mexico", t2: "New Zealand", s1: 1, s2: 3},
-                {t1: "Saudi Arabia", t2: "South Korea", s1: 7, s2: 2},
-                {t1: "Curacao", t2: "Iran", s1: 3, s2: 1},
-                {t1: "Tunisia", t2: "Ecuador", s1: 5, s2: 3},
-                {t1: "Morocco", t2: "Senegal", s1: 3, s2: 4}
-            ],
-            "QF": [
-                {t1: "Japan", t2: "Egypt", s1: 3, s2: 8},
-                {t1: "Dr Congo", t2: "New Zealand", s1: 3, s2: 4},
-                {t1: "Saudi Arabia", t2: "Curacao", s1: 4, s2: 5},
-                {t1: "Tunisia", t2: "Senegal", s1: 3, s2: 3, note: "(P)"}
-            ],
-            "SF": [
-                {t1: "Egypt", t2: "New Zealand", s1: 3, s2: 3, note: "(P)"},
-                {t1: "Curacao", t2: "Senegal", s1: 3, s2: 2}
-            ],
-            "Finals": {
-                "3rd": [{t1: "Egypt", t2: "Senegal"}],
-                "Final": [{t1: "New Zealand", t2: "Curacao"}]
-            }
+            "R16": [], "QF": [], "SF": [], "Final": []
         };
 
         function showStage(stage, event) {
@@ -107,53 +85,39 @@
                 event.currentTarget.classList.add('active');
             }
 
-            // Function to render a match card
-            const renderMatch = (m) => {
+            const matches = tournamentData[stage];
+            if(!matches || matches.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-500 pt-10">ပွဲစဉ်များ မစတင်သေးပါ</p>';
+                return;
+            }
+
+            matches.forEach((m) => {
                 const matchCard = document.createElement('div');
                 matchCard.className = 'match-card';
                 
-                const createHomeTeamUI = (name) => {
+                const createTeamUI = (name, isLeft) => {
                     const flag = TEAMS[name] || "";
-                    return CONTACTS[name] ? `<a href="${CONTACTS[name]}" target="_blank" class="team-link"><span>${flag}</span> ${name}</a>` : `<span class="no-link"><span>${flag}</span> ${name}</span>`;
+                    const contact = CONTACTS[name];
+                    if (contact && contact !== "") {
+                        return isLeft ? 
+                            `<a href="${contact}" target="_blank" class="team-link"><span>${flag}</span> ${name}</a>` :
+                            `<a href="${contact}" target="_blank" class="team-link">${name} <span>${flag}</span></a>`;
+                    }
+                    return isLeft ? 
+                        `<span class="no-link"><span>${flag}</span> ${name}</span>` :
+                        `<span class="no-link">${name} <span>${flag}</span></span>`;
                 };
-
-                const createAwayTeamUI = (name) => {
-                    const flag = TEAMS[name] || "";
-                    return CONTACTS[name] ? `<a href="${CONTACTS[name]}" target="_blank" class="team-link">${name} <span>${flag}</span></a>` : `<span class="no-link">${name} <span>${flag}</span></span>`;
-                };
-
-                const scoreText = (m.s1 !== undefined && m.s2 !== undefined) ? `${m.s1} - ${m.s2}` : "VS";
-                const resultBadge = `<div class="result-badge px-1">
-                                        <div class="font-bold">${scoreText}</div>
-                                        ${m.note ? `<div style="font-size: 0.6rem; color: #64748b;">${m.note}</div>` : ''}
-                                    </div>`;
 
                 matchCard.innerHTML = `
-                    <div class="flex-1 text-left truncate pr-2">${createHomeTeamUI(m.t1)}</div>
-                    ${resultBadge}
-                    <div class="flex-1 text-right truncate pl-2 flex justify-end">${createAwayTeamUI(m.t2)}</div>
+                    <div class="flex-1 text-left truncate pr-2">${createTeamUI(m.t1, true)}</div>
+                    <div class="result-badge px-2">VS</div>
+                    <div class="flex-1 text-right truncate pl-2 flex justify-end">${createTeamUI(m.t2, false)}</div>
                 `;
                 container.appendChild(matchCard);
-            };
-
-            if (stage === 'Finals') {
-                container.innerHTML += '<div class="section-header">Final</div>';
-                tournamentData['Finals']['Final'].forEach(renderMatch);
-                container.innerHTML += '<div class="section-header">3rd Place Match</div>';
-                tournamentData['Finals']['3rd'].forEach(renderMatch);
-            } else {
-                const matches = tournamentData[stage];
-                if(!matches || matches.length === 0) {
-                    container.innerHTML = '<p class="text-center text-gray-500 pt-10">ပွဲစဉ်များ မစတင်သေးပါ</p>';
-                } else {
-                    matches.forEach(renderMatch);
-                }
-            }
+            });
         }
         
-        window.onload = () => {
-            showStage('Finals', { currentTarget: document.querySelectorAll('.nav-btn')[4] });
-        };
+        showStage('R32', { currentTarget: document.querySelector('.nav-btn') });
     </script>
 </body>
 </html>
