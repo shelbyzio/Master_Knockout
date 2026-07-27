@@ -8,7 +8,7 @@
     <style>
         body { background-color: #0c0e14; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .match-card { background: #1a1c24; border-radius: 12px; padding: 16px 20px; border: 1px solid #2a2f3a; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-        .result-badge { font-size: 0.8rem; font-weight: 800; color: #d4ff00; }
+        .result-score { font-size: 0.85rem; font-weight: 800; color: #d4ff00; text-align: center; }
         .team-link { font-size: 0.9rem; font-weight: 600; color: #f1f5f9; text-decoration: none; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
         .team-link:hover { color: #d4ff00; }
         .no-link { font-size: 0.9rem; font-weight: 600; color: #94a3b8; display: flex; align-items: center; gap: 8px; }
@@ -43,37 +43,27 @@
         };
 
         const CONTACTS = {
-            "Australia": "https://t.me/KoKyaw_KYT", "Belgium": "https://t.me/Garniya",
-            "Cape Verde": "https://t.me/yminchit69", "Canada": "https://t.me/zam57493",
-            "Curaçao": "https://t.me/Badrul11", "Colombia": "",
-            "Ecuador": "https://t.me/Wallker29", "DR Congo": "https://t.me/zeusace0",
-            "Haiti": "https://t.me/Dijeaan", "France": "https://t.me/MRTONE3",
-            "Iran": "https://t.me/heinkyawthuang", "Iraq": "https://t.me/Theinau",
-            "New Zealand": "https://t.me/jthu23", "Netherlands": "https://t.me/Khualpu199",
-            "Norway": "https://t.me/Orodevice", "Portugal": "https://t.me/MUCHExt",
-            "Scotland": "https://t.me/ceeyg", "Saudi Arabia": "https://t.me/MCngakaung",
-            "Spain": "https://t.me/Hein040", "South Africa": "https://t.me/paingqt",
-            "Switzerland": "https://t.me/oki6k", "United States": "https://t.me/kyawlwintun17",
-            "Côte d'Ivoire": "https://t.me/mrleon006", "Uzbekistan": "https://t.me/lord_voldemort101",
-            "Paraguay": "https://t.me/ventus2940", "Bosnia": "https://t.me/MinThwe18",
-            "Mexico": "https://t.me/Nyishein77", "Austria": "https://t.me/Khine_Lin_Htay",
-            "Senegal": "https://t.me/Ricechat13579", "England": "",
-            "Ghana": "https://t.me/Kyawthaik468", "Jordan": "https://t.me/BlackEaglessuper"
+            "Australia": "https://t.me/KoKyaw_KYT", "Belgium": "https://t.me/Garniya", "Cape Verde": "https://t.me/yminchit69", "Canada": "https://t.me/zam57493", "Curaçao": "https://t.me/Badrul11", "Colombia": "", "Ecuador": "https://t.me/Wallker29", "DR Congo": "https://t.me/zeusace0", "Haiti": "https://t.me/Dijeaan", "France": "https://t.me/MRTONE3", "Iran": "https://t.me/heinkyawthuang", "Iraq": "https://t.me/Theinau", "New Zealand": "https://t.me/jthu23", "Netherlands": "https://t.me/Khualpu199", "Norway": "https://t.me/Orodevice", "Portugal": "https://t.me/MUCHExt", "Scotland": "https://t.me/ceeyg", "Saudi Arabia": "https://t.me/MCngakaung", "Spain": "https://t.me/Hein040", "South Africa": "https://t.me/paingqt", "Switzerland": "https://t.me/oki6k", "United States": "https://t.me/kyawlwintun17", "Côte d'Ivoire": "https://t.me/mrleon006", "Uzbekistan": "https://t.me/lord_voldemort101", "Paraguay": "https://t.me/ventus2940", "Bosnia": "https://t.me/MinThwe18", "Mexico": "https://t.me/Nyishein77", "Austria": "https://t.me/Khine_Lin_Htay", "Senegal": "https://t.me/Ricechat13579", "England": "", "Ghana": "https://t.me/Kyawthaik468", "Jordan": "https://t.me/BlackEaglessuper"
         };
 
-        // အဖွဲ့ဝင်များ အချင်းချင်း မတွေ့စေရန် စီထားခြင်း
         const tournamentData = {
             "R32": [
-                {t1: "Australia", t2: "Cape Verde"}, {t1: "Belgium", t2: "Canada"},
-                {t1: "Curaçao", t2: "Ecuador"}, {t1: "Colombia", t2: "DR Congo"},
-                {t1: "Haiti", t2: "Iran"}, {t1: "France", t2: "Iraq"},
-                {t1: "New Zealand", t2: "Norway"}, {t1: "Netherlands", t2: "Portugal"},
-                {t1: "Scotland", t2: "Spain"}, {t1: "Saudi Arabia", t2: "South Africa"},
-                {t1: "Switzerland", t2: "Côte d'Ivoire"}, {t1: "United States", t2: "Uzbekistan"},
-                {t1: "Paraguay", t2: "Bosnia"}, {t1: "Mexico", t2: "Austria"},
-                {t1: "Senegal", t2: "England"}, {t1: "Ghana", t2: "Jordan"}
+                {t1: "Australia", t2: "Cape Verde", score: "3-2"}, {t1: "Belgium", t2: "Canada", score: "4-2"},
+                {t1: "Curaçao", t2: "Ecuador", score: "6-2"}, {t1: "Colombia", t2: "DR Congo", score: "0-5"},
+                {t1: "Haiti", t2: "Iran", score: "8-6"}, {t1: "France", t2: "Iraq", score: "5-3"},
+                {t1: "New Zealand", t2: "Norway", score: "5-1"}, {t1: "Netherlands", t2: "Portugal", score: "2-1"},
+                {t1: "Scotland", t2: "Spain", score: "1-2"}, {t1: "Saudi Arabia", t2: "South Africa", score: "3-5"},
+                {t1: "Switzerland", t2: "Côte d'Ivoire", score: "TBD"}, {t1: "United States", t2: "Uzbekistan", score: "0-2"},
+                {t1: "Paraguay", t2: "Bosnia", score: "3-0"}, {t1: "Mexico", t2: "Austria", score: "1-2"},
+                {t1: "Senegal", t2: "England", score: "1-2"}, {t1: "Ghana", t2: "Jordan", score: "8(p)-7"}
             ],
-            "R16": [], "QF": [], "SF": [], "Final": []
+            "R16": [
+                {t1: "Australia", t2: "Belgium"}, {t1: "Curaçao", t2: "DR Congo"},
+                {t1: "Haiti", t2: "France"}, {t1: "New Zealand", t2: "Netherlands"},
+                {t1: "Spain", t2: "South Africa"}, {t1: "Switzerland/CIV", t2: "Uzbekistan"},
+                {t1: "Paraguay", t2: "Austria"}, {t1: "England", t2: "Ghana"}
+            ],
+            "QF": [], "SF": [], "Final": []
         };
 
         function showStage(stage, event) {
@@ -98,20 +88,15 @@
                 const createTeamUI = (name, isLeft) => {
                     const flag = TEAMS[name] || "";
                     const contact = CONTACTS[name];
-                    if (contact && contact !== "") {
-                        return isLeft ? 
-                            `<a href="${contact}" target="_blank" class="team-link"><span>${flag}</span> ${name}</a>` :
-                            `<a href="${contact}" target="_blank" class="team-link">${name} <span>${flag}</span></a>`;
-                    }
-                    return isLeft ? 
-                        `<span class="no-link"><span>${flag}</span> ${name}</span>` :
-                        `<span class="no-link">${name} <span>${flag}</span></span>`;
+                    return contact ? 
+                        `<a href="${contact}" target="_blank" class="team-link">${isLeft ? `<span>${flag}</span> ${name}` : `${name} <span>${flag}</span>`}</a>` :
+                        `<span class="no-link">${isLeft ? `<span>${flag}</span> ${name}` : `${name} <span>${flag}</span>`}</span>`;
                 };
 
                 matchCard.innerHTML = `
-                    <div class="flex-1 text-left truncate pr-2">${createTeamUI(m.t1, true)}</div>
-                    <div class="result-badge px-2">VS</div>
-                    <div class="flex-1 text-right truncate pl-2 flex justify-end">${createTeamUI(m.t2, false)}</div>
+                    <div class="flex-1 truncate ${m.score ? 'text-left' : ''}">${createTeamUI(m.t1, true)}</div>
+                    <div class="result-score px-3">${m.score || "VS"}</div>
+                    <div class="flex-1 truncate text-right flex justify-end">${createTeamUI(m.t2, false)}</div>
                 `;
                 container.appendChild(matchCard);
             });
