@@ -64,10 +64,16 @@
                 {t1: "Paraguay", t2: "Austria", score: "6(p)-4"}, {t1: "England", t2: "Ghana", score: "4-2"}
             ],
             "QF": [
-                {t1: "Australia", t2: "Curaçao"}, {t1: "Haiti", t2: "New Zealand"},
-                {t1: "South Africa", t2: "Uzbekistan"}, {t1: "Paraguay", t2: "England"}
-            ], 
-            "SF": [], "Final": []
+                {t1: "Australia", t2: "Curaçao", score: "0-10"},
+                {t1: "Haiti", t2: "New Zealand", score: "2-7"},
+                {t1: "South Africa", t2: "Uzbekistan", score: "2-3"},
+                {t1: "Paraguay", t2: "England", score: "3-2"}
+            ],
+            "SF": [
+                {t1: "Curaçao", t2: "New Zealand"},
+                {t1: "Uzbekistan", t2: "Paraguay"}
+            ],
+            "Final": []
         };
 
         function showStage(stage, event) {
@@ -78,8 +84,7 @@
             if (event && event.currentTarget) {
                 event.currentTarget.classList.add('active');
             } else {
-                // Default to R16 for this update
-                document.querySelector('[onclick*="R16"]').classList.add('active');
+                document.querySelector('[onclick*="'+stage+'"]').classList.add('active');
             }
 
             const matches = tournamentData[stage];
@@ -110,7 +115,7 @@
         }
         
         // Initial load
-        showStage('R16', { currentTarget: document.querySelector('[onclick*="R16"]') });
+        showStage('QF', { currentTarget: document.querySelector('[onclick*="QF"]') });
     </script>
 </body>
 </html>
