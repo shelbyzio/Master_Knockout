@@ -70,10 +70,12 @@
                 {t1: "Paraguay", t2: "England", score: "3-2"}
             ],
             "SF": [
-                {t1: "Curaçao", t2: "New Zealand"},
-                {t1: "Uzbekistan", t2: "Paraguay"}
+                {t1: "Curaçao", t2: "New Zealand", score: "3-0"},
+                {t1: "Uzbekistan", t2: "Paraguay", score: "2-0"}
             ],
-            "Final": []
+            "Final": [
+                {t1: "Curaçao", t2: "Uzbekistan", score: "VS"}
+            ]
         };
 
         function showStage(stage, event) {
@@ -84,7 +86,8 @@
             if (event && event.currentTarget) {
                 event.currentTarget.classList.add('active');
             } else {
-                document.querySelector('[onclick*="'+stage+'"]').classList.add('active');
+                const target = document.querySelector('[onclick*="'+stage+'"]');
+                if (target) target.classList.add('active');
             }
 
             const matches = tournamentData[stage];
@@ -115,7 +118,7 @@
         }
         
         // Initial load
-        showStage('QF', { currentTarget: document.querySelector('[onclick*="QF"]') });
+        showStage('Final', { currentTarget: document.querySelector('[onclick*="Final"]') });
     </script>
 </body>
 </html>
